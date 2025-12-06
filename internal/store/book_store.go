@@ -50,8 +50,8 @@ func (s *store) GetById(id int) (models.Book, error) {
 }
 
 func (s *store) Create(bookData models.Book) (models.Book, error) {
-	q := `INSERT INTO TABLE books (title, description) VALUES (?,?)`
-	res, err := s.db.Exec(q, bookData.Description, bookData.Title)
+	q := `INSERT INTO books (title, description) VALUES (?,?)`
+	res, err := s.db.Exec(q, bookData.Title, bookData.Description)
 	if err != nil {
 		return models.Book{}, err
 	}
