@@ -18,6 +18,7 @@ func main() {
 	}
 	defer db.Close()
 
+	//Creation of necesary tables
 	q := `
 		CREATE TABLE IF NOT EXISTS books (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,6 +30,9 @@ func main() {
 	if _, err := db.Exec(q); err != nil {
 		log.Fatal(err)
 	}
+
+	//necesary dependencies
+
 	bookStore := store.New(db)
 	bookService := service.New(bookStore)
 	bookHandler := transport.New(bookService)
